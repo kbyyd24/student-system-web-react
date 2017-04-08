@@ -1,11 +1,12 @@
-'use strict';
-
 import React, {Component} from 'react';
+import Navbar from './Navbar';
 
 class StudentSystem extends Component {
   render() {
     return (
-      <div></div>
+      <div>
+        <Navbar/>
+      </div>
     )
   }
 }
