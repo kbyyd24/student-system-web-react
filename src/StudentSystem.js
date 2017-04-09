@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Navbar from './Navbar';
 import {Route, Router, browserHistory} from 'react-router';
 import Homepage from './Homepage';
 import AddStudent from './AddStudent';
