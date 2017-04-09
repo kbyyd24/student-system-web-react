@@ -1,19 +1,17 @@
 import React, {Component} from 'react';
 import Navbar from './Navbar';
-import {Route, BrowserRouter as Router} from 'react-router-dom';
+import {Route, Router, browserHistory} from 'react-router';
 import Homepage from './Homepage';
+import AddStudent from './AddStudent';
 
 class StudentSystem extends Component {
   render() {
     return (
-      <Router>
-        <div>
-          <Navbar/>
-          <Route path={"/"} component={Homepage}/>
-          {/*<Route path={"/student/new"} component={Navbar}/>*/}
-          {/*<Route path={"/score"} component={Navbar}/>*/}
-          {/*<Route path={"/goodbye"} component={Navbar}/>*/}
-        </div>
+      <Router history={browserHistory}>
+        <Route path={"/"} component={Homepage}/>
+        <Route path={"/student/new"} component={AddStudent}/>
+        {/*<Route path={"/score"} component={Navbar}/>*/}
+        {/*<Route path={"/goodbye"} component={Navbar}/>*/}
       </Router>
     )
   }
