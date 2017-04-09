@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Navbar from './Navbar';
-import {Route, Router, Link} from 'react-router';
+import {Route, Router} from 'react-router';
 
 class StudentSystem extends Component {
   render() {
@@ -8,7 +8,7 @@ class StudentSystem extends Component {
       <div>
         <Navbar/>
         <Router path={"/"} component={Hompage}>
-          <Route path={"/addStudent"} component={AddStudent}/>
+          <Route path={"/student/new"} component={AddStudent}/>
           <Route path={"/score"} component={Score}/>
           <Route path={"/goodbye"} component={Goodbye}/>
         </Router>
