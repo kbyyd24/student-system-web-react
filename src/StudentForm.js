@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Navbar from './Navbar';
 
-class AddStudent extends Component{
+class StudentForm extends Component{
   render() {
     return (
       <div>
@@ -14,4 +14,4 @@ class AddStudent extends Component{
   }
 }
 
-export default AddStudent;
+export default StudentForm;

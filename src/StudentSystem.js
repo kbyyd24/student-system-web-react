@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Route, Router, browserHistory} from 'react-router';
 import Homepage from './Homepage';
-import AddStudent from './AddStudent';
+import AddStudent from './StudentForm';
 
 class StudentSystem extends Component {
   render() {
