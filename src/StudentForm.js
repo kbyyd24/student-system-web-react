@@ -5,7 +5,6 @@ class StudentForm extends Component{
   render() {
     return (
       <div>
-        {/*<Navbar/>*/}
         <div className="container text-center">
           2333
         </div>
