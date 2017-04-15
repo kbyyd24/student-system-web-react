@@ -1,61 +1,36 @@
 import React, {Component} from 'react';
 import './StudentForm.css';
+import InputItem from './InputItem';
 
-class StudentForm extends Component{
-  getInitialState() {
-    return {
-      name:'',
-      studentNumber:'',
-      nation:'',
-      classNumber:'',
-      math:0,
-      chinese:0,
-      english:0,
-      program:0
-    };
-  }
+class StudentForm extends Component {
+  static defaultProps = (function () {
+    const name = new InputItem('姓名: ', '', 'text');
+    const studentNumber = new InputItem('学号: ', '', 'text');
+    const nation = new InputItem('民族: ', '', 'text');
+    const classNumber = new InputItem('班级: ', '', 'text');
+    const math = new InputItem('数学成绩: ', NaN, 'number');
+    const chinese = new InputItem('语文成绩: ', NaN, 'number');
+    const english = new InputItem('英语成绩: ', NaN, 'number');
+    const program = new InputItem('编程成绩: ', NaN, 'number');
+    return {inputs: [name, studentNumber, nation, classNumber, math, chinese, english, program]};
+  }());
 
   render() {
+    const inputItems = this.props.inputs.map(inputItem => (
+      <div key={inputItem.name} className="input-group col-lg-6 div-center">
+        <span className="input-group-addon">{inputItem.name}</span>
+        <input type={inputItem.type} value={inputItem.value} className="form-control"/>
+      </div>
+    ));
     return (
       <div>
         <div className="container text-center">
           <h2>请输入学生信息</h2>
           <div>
-            <div className="input-group col-lg-6 div-center">
-              <span className="input-group-addon">姓名: </span>
-              <input className="form-control" name="name" type="text"/>
-            </div>
-            <div className="input-group col-lg-6 div-center">
-              <span className="input-group-addon">学号: </span>
-              <input className="form-control" name="stuNumber" type="text"/>
-            </div>
-            <div className="input-group col-lg-6 div-center">
-              <span className="input-group-addon">民族: </span>
-              <input className="form-control" name="nation" type="text"/>
-            </div>
-            <div className="input-group col-lg-6 div-center">
-              <span className="input-group-addon">班级: </span>
-              <input type="text" name="classNumber" className="form-control"/>
-            </div>
-            <div className="input-group col-lg-6 div-center">
-              <span className="input-group-addon">数学成绩: </span>
-              <input name="math" type="number" max="100" min="0" className="form-control"/>
-            </div>
-            <div className="input-group col-lg-6 div-center">
-              <span className="input-group-addon">语文成绩: </span>
-              <input name="chinese" type="number" max="100" min="0" className="form-control"/>
-            </div>
-            <div className="input-group col-lg-6 div-center">
-              <span className="input-group-addon">英语成绩: </span>
-              <input name="english" type="number" max="100" min="0" className="form-control"/>
-            </div>
-            <div className="input-group col-lg-6 div-center">
-              <span className="input-group-addon">编程成绩: </span>
-              <input name="program" type="number" max="100" min="0" className="form-control"/>
-            </div>
-            <div id="msg" className="alert alert-info"><span></span></div>
+            {inputItems}
+            <div id="msg" className="alert alert-info"><span/></div>
             <div>
-              <button className="btn btn-success" onClick="addStudent()">添加</button>
+              <button className="btn btn-success">添加</button>
             </div>
           </div>
         </div>
