@@ -3,7 +3,9 @@ import './StudentForm.css';
 import InputItem from './InputItem';
 
 class StudentForm extends Component {
-  static defaultProps = (function () {
+
+  constructor(props) {
+    super(props);
     const name = new InputItem('姓名: ', '', 'text');
     const studentNumber = new InputItem('学号: ', '', 'text');
     const nation = new InputItem('民族: ', '', 'text');
@@ -12,11 +14,11 @@ class StudentForm extends Component {
     const chinese = new InputItem('语文成绩: ', NaN, 'number');
     const english = new InputItem('英语成绩: ', NaN, 'number');
     const program = new InputItem('编程成绩: ', NaN, 'number');
-    return {inputs: [name, studentNumber, nation, classNumber, math, chinese, english, program]};
-  }());
+    this.status = {inputs: [name, studentNumber, nation, classNumber, math, chinese, english, program]};
+  }
 
   render() {
-    const inputItems = this.props.inputs.map(inputItem => (
+    const inputItems = this.status.inputs.map(inputItem => (
       <div key={inputItem.name} className="input-group col-lg-6 div-center">
         <span className="input-group-addon">{inputItem.name}</span>
         <input type={inputItem.type} value={inputItem.value} className="form-control"/>
