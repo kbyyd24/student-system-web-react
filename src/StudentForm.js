@@ -6,14 +6,14 @@ class StudentForm extends Component {
 
   constructor(props) {
     super(props);
-    const name = new InputItem('姓名: ', undefined, 'text');
-    const studentNumber = new InputItem('学号: ', undefined, 'text');
-    const nation = new InputItem('民族: ', undefined, 'text');
-    const classNumber = new InputItem('班级: ', undefined, 'text');
-    const math = new InputItem('数学成绩: ', undefined, 'number');
-    const chinese = new InputItem('语文成绩: ', undefined, 'number');
-    const english = new InputItem('英语成绩: ', undefined, 'number');
-    const program = new InputItem('编程成绩: ', undefined, 'number');
+    const name = new InputItem('姓名: ', undefined, 'text', 'name');
+    const studentNumber = new InputItem('学号: ', undefined, 'text', 'studentNumber');
+    const nation = new InputItem('民族: ', undefined, 'text', 'nation');
+    const classNumber = new InputItem('班级: ', undefined, 'text', 'classNumber');
+    const math = new InputItem('数学成绩: ', undefined, 'number', 'math');
+    const chinese = new InputItem('语文成绩: ', undefined, 'number', 'chinese');
+    const english = new InputItem('英语成绩: ', undefined, 'number', 'english');
+    const program = new InputItem('编程成绩: ', undefined, 'number', 'program');
     this.status = {inputs: [name, studentNumber, nation, classNumber, math, chinese, english, program]};
   }
 
@@ -28,7 +28,7 @@ class StudentForm extends Component {
     const inputItems = this.status.inputs.map(inputItem => (
       <div key={inputItem.name} className="input-group col-lg-6 div-center">
         <span className="input-group-addon">{inputItem.name}</span>
-        <input type={inputItem.type} value={inputItem.value} className="form-control"/>
+        <input type={inputItem.type} value={inputItem.value} name={inputItem.paramName} className="form-control"/>
       </div>
     ));
     return (

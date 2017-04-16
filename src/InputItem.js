@@ -1,8 +1,9 @@
 class InputItem {
-  constructor(name, value, type) {
+  constructor(name, value, type, paramName) {
     this.name = name;
     this.value = value;
     this.type = type;
+    this.paramName = paramName;
   }
 }
 
