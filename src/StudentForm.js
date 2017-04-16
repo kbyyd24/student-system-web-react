@@ -39,7 +39,7 @@ class StudentForm extends Component {
             {inputItems}
             <div id="msg" className="alert alert-info"><span/></div>
             <div>
-              <button className="btn btn-success" onClick={this.submitStudent()}>添加</button>
+              <button className="btn btn-success" onClick={this.submitStudent}>添加</button>
             </div>
           </div>
         </div>
