@@ -1,6 +1,25 @@
 import React, {Component} from 'react';
 
 class Score extends Component{
+
+  constructor(props) {
+    super(props);
+    this.state = {classes: []};
+  }
+
+  componentWillMount() {
+    const requestInit = {
+      method: 'GET',
+      mode: 'cors'
+    };
+    const request = new Request('http://localhost:4000/classes', requestInit);
+    fetch(request)
+      .then(response => response.json())
+      .then(classes => {
+        this.state.classes = classes;
+      });
+  }
+
   render() {
     return (
       <div className="container">
