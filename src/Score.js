@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ScoreForm from "./ScoreForm";
 
 class Score extends Component{
 
@@ -16,7 +17,8 @@ class Score extends Component{
     fetch(request)
       .then(response => response.json())
       .then(classes => {
-        this.state.classes = classes;
+        console.log(classes);
+        this.setState({classes});
       });
   }
 
@@ -33,7 +35,9 @@ class Score extends Component{
           </div>
         </div>
         <div>
-          <div id="classes"></div>
+          <div id="classes">
+            <ScoreForm classes={this.state.classes}/>
+          </div>
         </div>
       </div>
     );

@@ -7,14 +7,14 @@ class StudentForm extends Component {
   constructor(props) {
     super(props);
     const name = new InputItem('姓名: ', undefined, 'text', 'name');
-    const studentNumber = new InputItem('学号: ', undefined, 'text', 'studentNumber');
+    const stuNumber = new InputItem('学号: ', undefined, 'text', 'stuNumber');
     const nation = new InputItem('民族: ', undefined, 'text', 'nation');
     const classNumber = new InputItem('班级: ', undefined, 'text', 'classNumber');
     const math = new InputItem('数学成绩: ', undefined, 'number', 'math');
     const chinese = new InputItem('语文成绩: ', undefined, 'number', 'chinese');
     const english = new InputItem('英语成绩: ', undefined, 'number', 'english');
     const program = new InputItem('编程成绩: ', undefined, 'number', 'program');
-    this.status = {inputs: [name, studentNumber, nation, classNumber, math, chinese, english, program]};
+    this.status = {inputs: [name, stuNumber, nation, classNumber, math, chinese, english, program]};
   }
 
   submitStudent = () => {
