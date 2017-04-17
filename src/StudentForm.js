@@ -32,7 +32,11 @@ class StudentForm extends Component {
     fetch(addStudentReq)
       .then(response => response.json())
       .then(body => {
-        document.getElementById('msg').firstElementChild.innerHTML = body.msg
+        document.getElementById('msg').firstElementChild.innerHTML = body.msg;
+        [...document.getElementsByTagName('input')]
+          .forEach(input => {
+            input.value = '';
+          })
       })
   };
 
