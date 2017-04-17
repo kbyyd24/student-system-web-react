@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-// import Navbar from './Navbar';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 class Homepage extends Component{
   render() {
