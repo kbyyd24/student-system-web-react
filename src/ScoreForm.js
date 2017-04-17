@@ -25,6 +25,7 @@ class ScoreFrom extends Component {
         <div className="panel-body">
           <div>
             <table className="table">
+              <thead>
               <tr>
                 <th>姓名</th>
                 <th>学号</th>
@@ -36,19 +37,26 @@ class ScoreFrom extends Component {
                 <th>平均分</th>
                 <th>总分</th>
               </tr>
+              </thead>
+              <tbody>
               {this.studentHTML(clazz.students)}
+              </tbody>
             </table>
           </div>
           <div>
             <table className="table">
+              <thead>
               <tr>
                 <th>班级总分平均分</th>
                 <th>班级总分中位数</th>
               </tr>
+              </thead>
+              <tbody>
               <tr>
                 <td>{clazz.average}</td>
                 <td>{clazz.median}</td>
               </tr>
+              </tbody>
             </table>
           </div>
         </div>

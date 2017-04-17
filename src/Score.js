@@ -17,7 +17,6 @@ class Score extends Component{
     fetch(request)
       .then(response => response.json())
       .then(classes => {
-        console.log(classes);
         this.setState({classes});
       });
   }
