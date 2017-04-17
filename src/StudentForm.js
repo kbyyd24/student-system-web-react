@@ -6,6 +6,10 @@ class StudentForm extends Component {
 
   constructor(props) {
     super(props);
+    this.state = Object.assign({}, StudentForm.getClearInputs(), {result: ''});
+  }
+
+  static getClearInputs() {
     const name = new InputItem('姓名: ', undefined, 'text', 'name');
     const stuNumber = new InputItem('学号: ', undefined, 'text', 'stuNumber');
     const nation = new InputItem('民族: ', undefined, 'text', 'nation');
@@ -14,7 +18,7 @@ class StudentForm extends Component {
     const chinese = new InputItem('语文成绩: ', undefined, 'number', 'chinese');
     const english = new InputItem('英语成绩: ', undefined, 'number', 'english');
     const program = new InputItem('编程成绩: ', undefined, 'number', 'program');
-    this.status = {inputs: [name, stuNumber, nation, classNumber, math, chinese, english, program]};
+    return {inputs: [name, stuNumber, nation, classNumber, math, chinese, english, program]};
   }
 
   submitStudent = () => {
@@ -32,16 +36,13 @@ class StudentForm extends Component {
     fetch(addStudentReq)
       .then(response => response.json())
       .then(body => {
-        document.getElementById('msg').firstElementChild.innerHTML = body.msg;
-        [...document.getElementsByTagName('input')]
-          .forEach(input => {
-            input.value = '';
-          })
+        let partialState = Object.assign({}, StudentForm.getClearInputs(), {result: body.msg});
+        this.setState(partialState);
       })
   };
 
   render() {
-    const inputItems = this.status.inputs.map(inputItem => (
+    const inputItems = this.state.inputs.map(inputItem => (
       <div key={inputItem.name} className="input-group col-lg-6 div-center">
         <span className="input-group-addon">{inputItem.name}</span>
         <input type={inputItem.type} value={inputItem.value} name={inputItem.paramName} className="form-control"/>
@@ -53,7 +54,7 @@ class StudentForm extends Component {
           <h2>请输入学生信息</h2>
           <div>
             {inputItems}
-            <div id="msg" className="alert alert-info"><span/></div>
+            <div id="msg" className="alert alert-info"><span>{this.state.result}</span></div>
             <div>
               <button className="btn btn-success" onClick={this.submitStudent}>添加</button>
             </div>
