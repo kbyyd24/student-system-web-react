@@ -65,9 +65,15 @@ class ScoreFrom extends Component {
   };
 
   render() {
+    let showHtml = '';
+    if (this.props.classes.length === 0) {
+      showHtml = <h3 className="text-center">没有学生信息</h3>;
+    } else {
+      showHtml = this.classHTML(this.props.classes);
+    }
     return (
       <div className="container">
-        {this.classHTML(this.props.classes)}
+        {showHtml}
       </div>
     );
   }
