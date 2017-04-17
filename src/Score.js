@@ -9,6 +9,10 @@ class Score extends Component{
   }
 
   componentWillMount() {
+    this.loadClasses();
+  }
+
+  loadClasses() {
     const requestInit = {
       method: 'GET',
       mode: 'cors'
@@ -28,6 +32,10 @@ class Score extends Component{
     this.updateState(request);
   };
 
+  clearFilter = () => {
+    this.loadClasses();
+  };
+
   updateState(request) {
     fetch(request)
       .then(response => response.json())
@@ -45,7 +53,7 @@ class Score extends Component{
             <button onClick={this.filterStudent} className="btn btn-primary">搜索</button>
           </div>
           <div className="input-group-btn">
-            <button className="btn btn-block">清空过滤</button>
+            <button onClick={this.clearFilter} className="btn btn-block">清空过滤</button>
           </div>
         </div>
         <div>
