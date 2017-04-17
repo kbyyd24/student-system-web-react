@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import './StudentForm.css';
-import InputItem from './InputItem';
+import React, {Component} from "react";
+import "./StudentForm.css";
+import InputItem from "./InputItem";
 
 class StudentForm extends Component {
 
@@ -22,9 +22,11 @@ class StudentForm extends Component {
   }
 
   submitStudent = () => {
-    const studentForm = [...document.getElementsByTagName('input')]
-      .map(element => ({[element.name]: element.value}))
-      .reduce((acc, next) => Object.assign(acc, next), {});
+    const studentForm = this.state.inputs
+      .reduce((acc, next) => {
+        acc[next.paramName] = next.value;
+        return acc;
+      }, {});
     let headers = new Headers({'Content-Type': 'application/json'});
     const requestInit = {
       method: 'POST',
@@ -36,16 +38,24 @@ class StudentForm extends Component {
     fetch(addStudentReq)
       .then(response => response.json())
       .then(body => {
+        [...document.getElementsByTagName('input')]
+          .forEach(inputEl => inputEl.value = '');
         let partialState = Object.assign({}, StudentForm.getClearInputs(), {result: body.msg});
         this.setState(partialState);
       })
+  };
+
+  handleInput = (e) => {
+    let input = this.state.inputs.find(inputItem => inputItem.paramName === e.target.name);
+    input.value = e.target.value;
+    this.setState(this.state);
   };
 
   render() {
     const inputItems = this.state.inputs.map(inputItem => (
       <div key={inputItem.name} className="input-group col-lg-6 div-center">
         <span className="input-group-addon">{inputItem.name}</span>
-        <input type={inputItem.type} value={inputItem.value} name={inputItem.paramName} className="form-control"/>
+        <input type={inputItem.type} value={inputItem.value} onChange={this.handleInput} name={inputItem.paramName} className="form-control"/>
       </div>
     ));
     return (
