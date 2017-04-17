@@ -64,7 +64,9 @@ class StudentForm extends Component {
           <h2>请输入学生信息</h2>
           <div>
             {inputItems}
-            <div id="msg" className="alert alert-info"><span>{this.state.result}</span></div>
+            { this.state.result &&
+              <div id="msg" className="alert alert-info"><span>{this.state.result}</span></div>
+            }
             <div>
               <button className="btn btn-success" onClick={this.submitStudent}>添加</button>
             </div>
