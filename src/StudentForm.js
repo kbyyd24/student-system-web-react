@@ -21,7 +21,19 @@ class StudentForm extends Component {
     const studentForm = [...document.getElementsByTagName('input')]
       .map(element => ({[element.name]: element.value}))
       .reduce((acc, next) => Object.assign(acc, next), {});
-    console.log(studentForm)
+    let headers = new Headers({'Content-Type': 'application/json'});
+    const requestInit = {
+      method: 'POST',
+      mode: 'cors',
+      body: JSON.stringify(studentForm),
+      headers
+    };
+    let addStudentReq = new Request('http://localhost:4000/student/new', requestInit);
+    fetch(addStudentReq)
+      .then(response => response.json())
+      .then(body => {
+        document.getElementById('msg').firstElementChild.innerHTML = body.msg
+      })
   };
 
   render() {
