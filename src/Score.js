@@ -14,6 +14,21 @@ class Score extends Component{
       mode: 'cors'
     };
     const request = new Request('http://localhost:4000/classes', requestInit);
+    this.updateState(request);
+  }
+
+  filterStudent = () => {
+    let elementById = document.getElementById('stuNumbers');
+    let stuNumbers = elementById.value;
+    const requestInit = {
+      method: 'GET',
+      mode: 'cors'
+    };
+    const request = new Request(`http://localhost:4000/score/filter?stuNumbers=${stuNumbers}`, requestInit);
+    this.updateState(request);
+  };
+
+  updateState(request) {
     fetch(request)
       .then(response => response.json())
       .then(classes => {
@@ -27,7 +42,7 @@ class Score extends Component{
         <div className="input-group col-lg-6 div-center">
           <input type="text" id="stuNumbers" className="form-control"/>
           <div className="input-group-btn">
-            <button className="btn btn-primary">搜索</button>
+            <button onClick={this.filterStudent} className="btn btn-primary">搜索</button>
           </div>
           <div className="input-group-btn">
             <button className="btn btn-block">清空过滤</button>
